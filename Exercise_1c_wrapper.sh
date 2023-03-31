@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -name "*.fastq" | sed 's/\.\/Exercise_1c\///g' | parallel -j 4 ./Exercise_1c.sh "{} &> Exercise_1d/{}_runLog"
+find . -name "*.fastq" | sed 's/\.\/Exercise_1c\///g' | parallel -j 4 "./Exercise_1c.sh {}"
