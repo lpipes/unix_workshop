@@ -1,4 +1,4 @@
-#!/Users/lpipes/anaconda2/bin/python
+#!/usr/bin/python
 import glob
 path = "Exercise_1c"
 dir_list = glob.glob(path + '/*fastq')

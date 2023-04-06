@@ -1,4 +1,4 @@
-#!/Users/lpipes/anaconda2/bin/python
+#!/usr/bin/python
 import glob
 import sys
 number_of_parallel_jobs_to_run=int(sys.argv[1])
