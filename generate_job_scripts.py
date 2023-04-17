@@ -30,7 +30,7 @@ for i in range(number_of_slurm_jobs):
 	slurm_file.write("cd /global/scratch/users/lpipes/unix_workshop\n")
 	slurm_file.write("module load gcc openmpi\n")
 	slurm_file.write("module load bowtie2\n")
-	slurm_file.write("ht_helper.sh -t /global/scratch/users/lpipes/unix_workshop/Exercise_2_tasks/run_" + str(i) + ".tasks\n")
+	slurm_file.write("ht_helper.sh -t /global/scratch/users/lpipes/unix_workshop/Exercise_2_tasks/" + str(i) + ".tasks\n")
 	slurm_file.close()
 	for j in range(number_of_parallel_jobs_to_run):
 		if ( counter == size_of_dir ):
