@@ -3,11 +3,11 @@ import glob
 import sys
 number_of_parallel_jobs_to_run=int(sys.argv[1])
 path = "Exercise_2"
-dir_list = glob.glob(path + '/*_F_filt.fastq.gz')
+dir_list = glob.glob(path + '/*_F_filt.fastq')
 counter=0
 for x in dir_list:
 	spl = x.split("/")
-	spl = spl[1].split("_F_filt.fastq.gz")
+	spl = spl[1].split("_F_filt.fastq")
 	dir_list[counter]=spl[0]
 	counter = counter + 1
 counter=0
@@ -19,7 +19,7 @@ for i in range(number_of_slurm_jobs):
 	tasks_file = open("Exercise_2_tasks/" + str(i) + ".tasks","w")
 	slurm_file.write("#!/bin/bash\n")
 	slurm_file.write("#SBATCH --job-name=" + str(i) + "\n")
-	slurm_file.write("#SBATCH --partition=savio2_htc\n")
+	slurm_file.write("#SBATCH --partition=savio3_htc\n")
 	slurm_file.write("#SBATCH --account=fc_popgen\n")
 	slurm_file.write("#SBATCH --nodes=1\n")
 	slurm_file.write("#SBATCH --cpus-per-task=1\n")
@@ -35,6 +35,6 @@ for i in range(number_of_slurm_jobs):
 	for j in range(number_of_parallel_jobs_to_run):
 		if ( counter == size_of_dir ):
 			break
-		tasks_file.write("bowtie2 -x Exercise_2_bowtie_db/MT738585.1.fasta -1 Exercise_2/" + dir_list[counter] + "_F_filt.fastq.gz -2 Exercise_2/" + dir_list[counter] + "_R_filt.fastq.gz -S Exercise_2/" + dir_list[counter] + ".sam\n")
+		tasks_file.write("bowtie2 -x Exercise_2_bowtie_db/MT738585.1.fasta -1 Exercise_2/" + dir_list[counter] + "_F_filt.fastq -2 Exercise_2/" + dir_list[counter] + "_R_filt.fastq -S Exercise_2/" + dir_list[counter] + ".sam\n")
 		counter = counter + 1
 	tasks_file.close()
